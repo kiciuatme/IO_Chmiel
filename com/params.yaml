@@ -1,0 +1,54 @@
+# The three parameter categories are:
+# - setting: Setting to use for preprocessing and class specific settings.
+# - featureClass: Feature class to enable, <value> is list of strings representing enabled features
+# - imageType: image types to calculate features on. <value> is custom kwarg settings (dictionary)
+
+setting:
+  normalize: True
+  binWidth: 25
+  label: 1
+  interpolator: 'sitkBSpline'
+  resampledPixelSpacing: # disable resampling
+  weightingNorm: #  None
+
+imageType:
+  Original: {} # '{}' is interpreted as an empty dictionary, "Original" for unfiltered image
+
+featureClass:
+#  shape:  # not used -> for our input data it's not providing useful data
+  firstorder: # all enabled
+  glcm: # only listed features enabled
+    - 'Autocorrelation'
+    - 'JointAverage'
+    - 'ClusterProminence'
+    - 'Contrast'
+    - 'Correlation'
+    - 'DifferenceVariance'
+    - 'JointEnergy'
+    - 'Idm'
+    - 'SumSquares'
+    - 'InverseVariance'
+# Disabled glcm features to reduce compute time
+#    - 'ClusterShade'
+#    - 'ClusterTendency'
+#    - 'DifferenceAverage'
+#    - 'DifferenceEntropy'
+#    - 'JointEntropy'
+#    - 'Imc1'
+#    - 'Imc2'
+#    - 'Idmn'
+#    - 'Id'
+#    - 'Idn'
+#    - 'MaximumProbability'
+#    - 'SumEntropy'
+  glrlm: # only listed features enabled
+    - 'GrayLevelNonUniformityNormalized'
+    - 'GrayLevelVariance'
+  glszm: # only listed features enabled
+    - 'GrayLevelNonUniformityNormalized'
+    - 'LargeAreaLowGrayLevelEmphasis'
+    - 'ZonePercentage'
+  gldm:  # only listed features enabled
+    - 'DependenceNonUniformityNormalized'
+    - 'LargeDependenceLowGrayLevelEmphasis'
+#  ngtdm: excluded
